@@ -1,0 +1,68 @@
+# Environment variables
+.env
+
+# Virtual environment
+venv/
+env/
+ENV/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Memory index files
+memory_index/
+
+# Large data files
+*.csv
+*.json
+*.xlsx
+*.db
+
+# Logs
+logs/
+*.log
+
+# OS specific
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Document files that might be added for testing
+# Keep this commented if you want to include sample documents in your repo
+# documents/*
+# !documents/.gitkeep
+
+# OpenAI API key file
+openai_api_key.txt
