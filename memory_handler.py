@@ -3,18 +3,16 @@ Manages the agent's memory using LlamaIndex.
 """
 import os
 from typing import List, Dict, Any
-from llama_index.core import VectorStoreIndex, ServiceContext, load_index_from_storage
+from llama_index.core import VectorStoreIndex, load_index_from_storage
 from llama_index.core.storage import StorageContext
 from llama_index.core.node_parser import SimpleNodeParser
 from llama_index.llms.openai import OpenAI
+from llama_index.core.settings import Settings
 from config import MODEL_NAME, MODEL_TEMPERATURE, MEMORY_INDEX_NAME, SIMILARITY_TOP_K, OPENAI_API_KEY
 
-def create_service_context():
+def configure_settings():
     """
-    Create the service context for LlamaIndex with the configured LLM.
-    
-    Returns:
-        ServiceContext: The configured service context
+    Configure global settings for LlamaIndex with the configured LLM.
     """
     llm = OpenAI(
         model=MODEL_NAME,
@@ -22,8 +20,9 @@ def create_service_context():
         api_key=OPENAI_API_KEY
     )
     
-    service_context = ServiceContext.from_defaults(llm=llm)
-    return service_context
+    # Configure global settings
+    Settings.llm = llm
+    Settings.chunk_size = 1024
 
 def build_memory_index(nodes: List[Dict[str, Any]]):
     """
@@ -35,12 +34,13 @@ def build_memory_index(nodes: List[Dict[str, Any]]):
     Returns:
         VectorStoreIndex: The built index
     """
-    service_context = create_service_context()
+    # Configure settings
+    configure_settings()
     
     print("Building memory index...")
+    # Create index from nodes, not documents
     index = VectorStoreIndex(
         nodes=nodes,
-        service_context=service_context
     )
     
     # Save the index to disk
@@ -65,11 +65,12 @@ def load_memory_index():
     
     print(f"Loading existing memory index from {MEMORY_INDEX_NAME}...")
     try:
-        service_context = create_service_context()
+        # Configure settings
+        configure_settings()
+        
         storage_context = StorageContext.from_defaults(persist_dir=MEMORY_INDEX_NAME)
         index = load_index_from_storage(
             storage_context=storage_context,
-            service_context=service_context
         )
         print("Memory index loaded successfully.")
         return index

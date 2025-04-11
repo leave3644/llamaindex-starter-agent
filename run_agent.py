@@ -1,5 +1,5 @@
 """
-Main script to run the LlamaIndex Memory Agent.
+Main script to run the LlamaIndex Starter Agent.
 """
 import os
 import sys
@@ -9,7 +9,7 @@ from llama_index.core.agent import ReActAgent  # Try the core package
 
 
 from document_processor import load_documents, process_documents
-from memory_handler import build_memory_index, load_memory_index, query_memory, create_service_context
+from memory_handler import build_memory_index, load_memory_index, query_memory, configure_settings
 from config import MODEL_NAME, MODEL_TEMPERATURE, OPENAI_API_KEY, DOCUMENTS_DIR
 from agent import agent_actions
 
@@ -83,7 +83,7 @@ def initialize_agent(memory_index):
 def main():
     """Main function to run the agent."""
     print("\n" + "="*50)
-    print("Welcome to LlamaIndex Memory Agent!")
+    print("Welcome to LlamaIndex Starter Agent!")
     print("="*50 + "\n")
     
     # Check if documents directory exists and has files
@@ -119,7 +119,7 @@ def main():
             user_input = input("> ")
             
             if user_input.lower() in ["exit", "quit", "bye"]:
-                print("Thank you for using LlamaIndex Memory Agent. Goodbye!")
+                print("Thank you for using LlamaIndex Starter Agent. Goodbye!")
                 break
             
             # Process the query with the agent
