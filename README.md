@@ -28,8 +28,8 @@ In this hands-on workshop, you'll deploy an AI agent powered entirely by LlamaIn
    Open your terminal/command prompt and run:
    
    ```bash
-   git clone https://github.com/your-username/llamaindex-memory-agent.git
-   cd llamaindex-memory-agent
+   git clone https://github.com/leave3644/llamaindex-starter-agent
+   cd llamaindex-starter-agent
    ```
 
 2. **Create a virtual environment**
@@ -98,7 +98,7 @@ In this hands-on workshop, you'll deploy an AI agent powered entirely by LlamaIn
    
    You should see output like:
    ```
-   Welcome to LlamaIndex Memory Agent!
+   Welcome to LlamaIndex Starter Agent!
    ================================================
    
    Loading documents from documents/...
